@@ -39,5 +39,7 @@ import java.util.Scanner;
         public NumberIsLowerThanZeroException(double random) {
             this.reason = random;
         }
+        //foo bar. changes to commit
+
     }
 }

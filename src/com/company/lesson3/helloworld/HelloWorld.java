@@ -26,4 +26,5 @@ public class HelloWorld {
 
     private static class MyException extends RuntimeException {
     }
+    //foo bar. changes to commit
 }
