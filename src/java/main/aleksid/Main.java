@@ -1,4 +1,4 @@
-package com.company;
+package java.main.aleksid;
 
 public class Main {
 

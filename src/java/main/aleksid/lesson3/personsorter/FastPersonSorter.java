@@ -1,4 +1,4 @@
-package com.company.lesson3.personsorter;
+package java.main.aleksid.lesson3.personsorter;
 
 import java.util.Comparator;
 import java.util.Random;

@@ -1,4 +1,4 @@
-package com.company.lesson3.personsorter;
+package java.main.aleksid.lesson3.personsorter;
 /**
  * 3. Дан массив объектов Person. Класс Person характеризуется полями age (возраст, целое число 0-100),
  * sex (пол – объект класса Sex со строковыми константами внутри MAN, WOMAN), name (имя - строка).

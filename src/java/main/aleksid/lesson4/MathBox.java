@@ -1,4 +1,4 @@
-package com.company.lesson4;
+package java.main.aleksid.lesson4;
 
 /**
  * 1. Написать класс MathBox, реализующий следующий функционал:

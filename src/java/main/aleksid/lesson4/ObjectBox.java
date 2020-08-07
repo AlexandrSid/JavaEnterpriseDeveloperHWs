@@ -1,4 +1,4 @@
-package com.company.lesson4;
+package java.main.aleksid.lesson4;
 
 /**
  * 2. Создать класс ObjectBox, который будет хранить коллекцию Object.

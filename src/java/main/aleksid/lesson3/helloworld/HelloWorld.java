@@ -1,4 +1,4 @@
-package com.company.lesson3.helloworld;
+package java.main.aleksid.lesson3.helloworld;
 
 import java.util.Random;
 
