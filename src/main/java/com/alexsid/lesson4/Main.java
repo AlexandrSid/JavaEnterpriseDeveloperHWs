@@ -9,6 +9,6 @@ public class Main {
         System.out.println(box);
         box.removeInteger(5);
         System.out.println(box);
-
+        box.dump();
     }
 }

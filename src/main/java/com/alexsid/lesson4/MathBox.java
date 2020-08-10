@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
  * <p>
  * • Создать метод, который получает на вход Integer и если такое значение есть в коллекции, удаляет его.
  */
-public class MathBox extends ObjectBox {
+public class MathBox extends ObjectBox {//параметризация <? extends Number> невозможна, Параметризация <T extends Number> ограничивает возможность использования одного типа для одной коробки
 
     private Set<Number> collection;
 
@@ -61,6 +61,28 @@ public class MathBox extends ObjectBox {
         return collection.toString();
     }
 
+    @Override
+    public void addObject(Object o) {
+        if (o instanceof Number){
+            collection.add((Number)o);}
+        else{
+            throw new WrongArgumentException();
+        }
+    }
 
+    @Override
+    public boolean deleteObject(Object o) {
+        collection.remove(o);
+        return super.deleteObject(o);
+    }
+
+    @Override
+    public void dump() {
+        super.dump();
+    }
+
+    private class WrongArgumentException extends RuntimeException{
+
+    }
 }
 

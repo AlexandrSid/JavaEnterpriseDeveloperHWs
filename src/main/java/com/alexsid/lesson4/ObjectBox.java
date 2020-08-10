@@ -1,7 +1,7 @@
 package main.java.com.alexsid.lesson4;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 
 /**
  * 2. Создать класс ObjectBox, который будет хранить коллекцию Object.
@@ -13,14 +13,13 @@ import java.util.Collection;
  * • Должен быть метод dump, выводящий содержимое коллекции в строку.
  */
 public class ObjectBox  {
-    private static Collection collection = new ArrayList();
+    protected Collection collection = new HashSet();
 
-    public static Object addObject(Object o) {
+    public void addObject(Object o) {
         collection.add(o);
-        return o;
     }
 
-    public static boolean deleteObject(Object o) {
+    public boolean deleteObject(Object o) {
         boolean remove = collection.remove(o);
         return remove;
     }
