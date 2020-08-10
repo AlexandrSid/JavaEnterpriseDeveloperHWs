@@ -1,4 +1,4 @@
-package java.main.aleksid.lesson3.personsorter;
+package main.java.com.alexsid.lesson3.personsorter;
 
 public enum Sex {
     MAN(1),

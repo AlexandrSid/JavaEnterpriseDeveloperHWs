@@ -1,4 +1,4 @@
-package java.main.aleksid.lesson5.petcatalogue;
+package main.java.com.alexsid.lesson5.petcatalogue;
 
 import java.util.Objects;
 

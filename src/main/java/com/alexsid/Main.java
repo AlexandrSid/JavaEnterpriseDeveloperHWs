@@ -1,4 +1,4 @@
-package java.main.aleksid;
+package main.java.com.alexsid;
 
 public class Main {
 

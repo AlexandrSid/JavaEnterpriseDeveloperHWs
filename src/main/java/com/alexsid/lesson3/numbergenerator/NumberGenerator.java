@@ -1,4 +1,4 @@
-package java.main.aleksid.lesson3.numbergenerator;
+package main.java.com.alexsid.lesson3.numbergenerator;
 
 import java.util.Scanner;
 
