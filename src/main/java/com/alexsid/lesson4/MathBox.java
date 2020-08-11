@@ -1,7 +1,6 @@
 package main.java.com.alexsid.lesson4;
 
-import java.util.Collections;
-import java.util.HashSet;
+import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -21,22 +20,24 @@ import java.util.stream.Collectors;
  * <p>
  * • Создать метод, который получает на вход Integer и если такое значение есть в коллекции, удаляет его.
  */
-public class MathBox extends ObjectBox {//параметризация <? extends Number> невозможна, Параметризация <T extends Number> ограничивает возможность использования одного типа для одной коробки
+public class MathBox<T extends Number> extends ObjectBox {//параметризация <? extends Number> невозможна, Параметризация <T extends Number> ограничивает возможность использования одного типа для одной коробки
 
-    private Set<Number> collection;
+    private Set<T> collection;
+    private final Calculator calculator;
 
+    public MathBox(final T[] argNumbers) {
+        collection = Arrays.stream(argNumbers).collect(Collectors.toSet());//Просили же всё что можно через StreamAPI :D
+        calculator = CalculatorProvider.getOne(argNumbers[0].getClass() );//ничего лучше не придумал ((
+        //вообще всё это какая-то акробатика, а не архитектура, как мне кажется.
 
-    public MathBox(Number[] argNumbers) {
-        this.collection = new HashSet<>();
-        Collections.addAll(this.collection, argNumbers);
     }
 
-    public Number summator() {
-        return collection.stream().reduce(MyNumberUtils::sum).get();
+    public T summator() {
+        return collection.stream().reduce((a,b) -> (T)calculator.add(a, b)).get();
     }
 
-    public void splitter(Number divider) {
-        collection = collection.stream().map(n -> MyNumberUtils.divide(n, divider)).collect(Collectors.toSet());
+    public void splitter(T divider) {
+        collection = collection.stream().map(n -> (T)calculator.divide(n, divider)).collect(Collectors.toSet());
     }
 
     public void removeInteger(Integer integer) {
@@ -64,9 +65,9 @@ public class MathBox extends ObjectBox {//параметризация <? extend
     @Override
     public void addObject(Object o) {
         if (o instanceof Number){
-            collection.add((Number)o);}
+            collection.add((T) o);}
         else{
-            throw new WrongArgumentException();
+            throw new RuntimeException();
         }
     }
 
@@ -81,8 +82,13 @@ public class MathBox extends ObjectBox {//параметризация <? extend
         super.dump();
     }
 
-    private class WrongArgumentException extends RuntimeException{
+//    private class WrongArgumentException extends RuntimeException {
 
+//    }
+
+    interface Calculator<T>{
+        T add(T n1, T n2);
+        T divide(T n, T divider);
     }
 }
 
