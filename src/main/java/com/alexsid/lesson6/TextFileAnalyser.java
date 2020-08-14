@@ -13,7 +13,7 @@ import java.util.stream.Stream;
  * Найденные слова не должны повторяться, регистр не должен учитываться.
  * Одно слово в разных падежах – это разные слова.
  */
-public class TextFileAnalyser {
+public final class TextFileAnalyser {
     //не стал выводить в .property файл
     private String inputFileName = "src/main/resources/input.txt";
     private String outputFileName = "src/main/resources/output.txt";
