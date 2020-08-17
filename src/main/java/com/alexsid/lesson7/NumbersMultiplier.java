@@ -15,7 +15,9 @@ public class NumbersMultiplier implements Callable<BigInteger> {
     @Override
     public BigInteger call() throws Exception {
         BigInteger result = new BigInteger("1");
-        numbers.forEach(n -> new BigInteger(n.toString()).multiply(result));
+        for (Integer i: numbers) {
+            result = result.multiply(new BigInteger(String.valueOf(i)));
+        }
         return result;
     }
 }

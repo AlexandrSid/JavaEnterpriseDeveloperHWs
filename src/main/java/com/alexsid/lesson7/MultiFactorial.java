@@ -2,8 +2,7 @@ package main.java.com.alexsid.lesson7;
 
 import java.math.BigInteger;
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.Future;
+import java.util.concurrent.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -27,9 +26,20 @@ import java.util.stream.IntStream;
  */
 public class MultiFactorial {
 
-    Map<Integer, BigInteger> knownFactorials;
+    private Map<Integer, BigInteger> knownFactorials;
+    private final ExecutorService service = Executors.newWorkStealingPool();
 
-    public Integer getClosestKnownFactorialBase(Integer arg) {
+    public void computeFactorials(Integer[] bases) throws ExecutionException, InterruptedException {
+        long start = System.nanoTime();
+        for (Integer base : bases) {
+            Callable<BigInteger> task = () -> computeFactorial(base);
+            Future<BigInteger> compResult = service.submit(task);
+            System.out.println(compResult.get());
+        }
+        System.out.println(System.nanoTime() - start);
+    }
+
+    private Integer getClosestKnownFactorialBase(Integer arg) {
         return knownFactorials.keySet()
                 .stream()
                 .filter(k -> (k <= arg))
@@ -39,30 +49,35 @@ public class MultiFactorial {
     }
 
     //переделать метод в Callable
-    public BigInteger computeFactorial(Integer base) {
+    //громоздко, декомпозировать бы, хотя это мб из-за комментов и длинных имён.
+    private BigInteger computeFactorial(Integer base) throws ExecutionException, InterruptedException {
         Integer closestKnownFactorialBase = getClosestKnownFactorialBase(base);//максимальное число < base, факториал которого известен
-        List<Integer> numbers = IntStream.range(closestKnownFactorialBase, base + 1).boxed().collect(Collectors.toList());//числа, на которые нужно домножить base!
+        List<Integer> numbers = IntStream.range(closestKnownFactorialBase, base + 1).boxed().collect(Collectors.toList());//числа, на которые нужно домножить base factorial
+
         //разделим список этих чисел на группы, чтобы многопоточно вычислить произведение каждой из групп
         List<List<Integer>> partition = partition(numbers, 100);
-        List<Future<BigInteger>> semiResults = null;
-        for(List list : partition){
-            new NumbersMultiplier(list);
-            //и кладём в пулл на исполнение
+        List<Future<BigInteger>> semiResults = new ArrayList<>();
+        for (List list : partition) {
+            NumbersMultiplier numbersMultiplier = new NumbersMultiplier(list);
+            Future<BigInteger> semiResult = service.submit(numbersMultiplier);
+            semiResults.add(semiResult);
+        }
+        List<BigInteger> bigInts = new ArrayList<>();//чёт стрёмно оно было сразу всё собирать в БигИнтеджеры
+        for (Future<BigInteger> bi : semiResults) {
+            bigInts.add(bi.get());
         }
         //соберём все промежуточные результаты и вернём
         BigInteger closestFactorial = knownFactorials.get(closestKnownFactorialBase);
-
-        return null;
-
+        return bigIntegerMultiplier(closestFactorial, bigInts);
     }
 
+    //в Guava и Apache Commons Collections есть метод Lists.partition(bigList, sublistSize);
     private List<List<Integer>> partition(List<Integer> numbers, int subCollectionSize) {
         List<List<Integer>> sublists = new ArrayList<>();
-        //в Guava и Apache Commons Collections есть метод Lists.partition(bigList, sublistSize);
-        for (int i = 0; i < numbers.size(); i+= subCollectionSize) {
-            int n = i+subCollectionSize-1;
-            if(n>= numbers.size()){
-                sublists.add(numbers.subList(i, numbers.size()-1));
+        for (int i = 0; i <= numbers.size(); i += subCollectionSize) {
+            int n = i + subCollectionSize;
+            if (n >= numbers.size()) {
+                sublists.add(numbers.subList(i, numbers.size()));
                 break;
             }
             sublists.add(numbers.subList(i, n));
@@ -70,14 +85,22 @@ public class MultiFactorial {
         return sublists;
     }
 
-    private BigInteger bigIntegerMultiplier(BigInteger factorial, List<BigInteger> semiResults){
+    private BigInteger bigIntegerMultiplier(BigInteger factorial, List<BigInteger> semiResults) {
         BigInteger result = factorial;
-        semiResults.forEach(n -> new BigInteger(n.toString()).multiply(result));
+        for (BigInteger bi : semiResults) {
+            result = result.multiply(bi);
+        }
         return result;
     }
 
     public MultiFactorial() {
         this.knownFactorials = new ConcurrentHashMap<>();
         knownFactorials.put(1, new BigInteger("1"));
+    }
+
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
+        MultiFactorial multiFactorial = new MultiFactorial();
+        multiFactorial.computeFactorials(new Integer[]{103, 43, 330, 202, 1003, 5673});
+        multiFactorial.service.shutdown();//если переношу в computeFactorials - слишком рано глушит пул и всё падает
     }
 }
