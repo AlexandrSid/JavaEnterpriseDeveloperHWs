@@ -26,6 +26,14 @@ import java.util.stream.IntStream;
  */
 public class MultiFactorial {
 
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
+        MultiFactorial multiFactorial = new MultiFactorial();
+        multiFactorial.computeFactorials(new Integer[]{27300, 27423, 17200, 1270});
+        //послдняя нерешённая проблема
+        //UPD: Закомментил - не упало...
+//        multiFactorial.service.shutdown();//если переношу в computeFactorials - слишком рано глушит пул и всё падает
+    }
+
     private Map<Integer, BigInteger> knownFactorials;
     private final ExecutorService service = Executors.newWorkStealingPool();
 
@@ -48,31 +56,33 @@ public class MultiFactorial {
                 .getAsInt();
     }
 
-    //переделать метод в Callable
-    //громоздко, декомпозировать бы, хотя это мб из-за комментов и длинных имён.
-    private BigInteger computeFactorial(Integer base) throws ExecutionException, InterruptedException {
+    public BigInteger computeFactorial(Integer base) throws ExecutionException, InterruptedException {
         Integer closestKnownFactorialBase = getClosestKnownFactorialBase(base);//максимальное число < base, факториал которого известен
-        List<Integer> numbers = IntStream.range(closestKnownFactorialBase, base + 1).boxed().collect(Collectors.toList());//числа, на которые нужно домножить base factorial
+        List<Integer> numbers =
+                IntStream
+                        .rangeClosed(closestKnownFactorialBase, base)
+                        .boxed()
+                        .collect(Collectors.toList());//числа, на которые нужно домножить base factorial
 
         //разделим список этих чисел на группы, чтобы многопоточно вычислить произведение каждой из групп
-        List<List<Integer>> partition = partition(numbers, 100);
-        List<Future<BigInteger>> semiResults = new ArrayList<>();
+        List<List<Integer>> partition = partition(numbers, 100);//hardcode
+
+        List<BigInteger> bigInts = new ArrayList<>();
         for (List list : partition) {
             NumbersMultiplier numbersMultiplier = new NumbersMultiplier(list);
             Future<BigInteger> semiResult = service.submit(numbersMultiplier);
-            semiResults.add(semiResult);
+            bigInts.add(semiResult.get());
         }
-        List<BigInteger> bigInts = new ArrayList<>();//чёт стрёмно оно было сразу всё собирать в БигИнтеджеры
-        for (Future<BigInteger> bi : semiResults) {
-            bigInts.add(bi.get());
-        }
-        //соберём все промежуточные результаты и вернём
+        //соберём все промежуточные результаты в один, закэшируем его и вернём
         BigInteger closestFactorial = knownFactorials.get(closestKnownFactorialBase);
-        return bigIntegerMultiplier(closestFactorial, bigInts);
+        BigInteger result = bigIntegerMultiplier(closestFactorial, bigInts);
+        knownFactorials.put(base, result);
+        return result;
     }
 
     //в Guava и Apache Commons Collections есть метод Lists.partition(bigList, sublistSize);
-    private List<List<Integer>> partition(List<Integer> numbers, int subCollectionSize) {
+    //раньше я бы вынес его статическим методом в утилитарный класс
+    public List<List<Integer>> partition(List<Integer> numbers, int subCollectionSize) {
         List<List<Integer>> sublists = new ArrayList<>();
         for (int i = 0; i <= numbers.size(); i += subCollectionSize) {
             int n = i + subCollectionSize;
@@ -85,6 +95,7 @@ public class MultiFactorial {
         return sublists;
     }
 
+    //раньше я бы вынес его статическим методом в утилитарный класс
     private BigInteger bigIntegerMultiplier(BigInteger factorial, List<BigInteger> semiResults) {
         BigInteger result = factorial;
         for (BigInteger bi : semiResults) {
@@ -98,9 +109,8 @@ public class MultiFactorial {
         knownFactorials.put(1, new BigInteger("1"));
     }
 
-    public static void main(String[] args) throws ExecutionException, InterruptedException {
-        MultiFactorial multiFactorial = new MultiFactorial();
-        multiFactorial.computeFactorials(new Integer[]{103, 43, 330, 202, 1003, 5673});
-        multiFactorial.service.shutdown();//если переношу в computeFactorials - слишком рано глушит пул и всё падает
+    //а как в тестах, вынесенных в отдельную ветку проекта, получать доступ к privat полям и методам?
+    public Map<Integer, BigInteger> getKnownFactorials() {
+        return knownFactorials;
     }
 }
