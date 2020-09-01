@@ -1,4 +1,4 @@
-package main.java.com.alexsid.lesson10;
+package main.java.com.alexsid.lesson10.tasks13;
 
 public interface Sorter {
     public void bubbleSort(int[] arr);
