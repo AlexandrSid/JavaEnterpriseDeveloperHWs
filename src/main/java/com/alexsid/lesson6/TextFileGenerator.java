@@ -1,4 +1,4 @@
-package main.java.com.alexsid.lesson6;
+package com.alexsid.lesson6;
 /**
  * Необходимо написать метод getFiles(String path, int n, int size, String[] words),
  * который создаст n файлов размером size в каталоге path. words - массив слов.

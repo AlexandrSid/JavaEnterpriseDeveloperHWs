@@ -1,6 +1,6 @@
-package test.java.lesson7;
+package lesson7;
 
-import main.java.com.alexsid.lesson7.MultiFactorial;
+import com.alexsid.lesson7.MultiFactorial;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

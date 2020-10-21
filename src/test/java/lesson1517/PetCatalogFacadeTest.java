@@ -1,17 +1,15 @@
-package test.java.lesson1517;
+package lesson1517;
 
-import main.java.com.alexsid.lesson1517.DuplicatedPetExceptionHandler;
-import main.java.com.alexsid.lesson1517.Person;
-import main.java.com.alexsid.lesson1517.PetCatalog;
-import main.java.com.alexsid.lesson1517.PetCatalogFacade;
-import main.java.com.alexsid.lesson1517.pets.DuplicatedPetException;
-import main.java.com.alexsid.lesson1517.pets.Pet;
-import main.java.com.alexsid.lesson1517.pets.PetFactory;
+import com.alexsid.lesson1517.DuplicatedPetExceptionHandler;
+import com.alexsid.lesson1517.Person;
+import com.alexsid.lesson1517.PetCatalog;
+import com.alexsid.lesson1517.PetCatalogFacade;
+import com.alexsid.lesson1517.pets.DuplicatedPetException;
+import com.alexsid.lesson1517.pets.Pet;
+import com.alexsid.lesson1517.pets.PetFactory;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class PetCatalogFacadeTest {
     PetFactory factory;

@@ -1,4 +1,4 @@
-package main.java.com.alexsid.lesson13;
+package com.alexsid.lesson13;
 
 import java.util.ArrayList;
 import java.util.List;

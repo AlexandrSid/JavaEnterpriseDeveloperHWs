@@ -1,4 +1,4 @@
-package main.java.com.alexsid.lesson1517.pets;
+package com.alexsid.lesson1517.pets;
 
 public class DuplicatedPetException extends RuntimeException{
     {

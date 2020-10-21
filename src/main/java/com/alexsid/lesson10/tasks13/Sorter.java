@@ -1,6 +1,6 @@
-package main.java.com.alexsid.lesson10.tasks13;
+package com.alexsid.lesson10.tasks13;
 
 public interface Sorter {
-    public void bubbleSort(int[] arr);
-    public void standardSort(int[] arr);
+    void bubbleSort(int[] arr);
+    void standardSort(int[] arr);
 }

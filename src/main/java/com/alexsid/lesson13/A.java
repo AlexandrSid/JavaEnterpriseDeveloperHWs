@@ -1,4 +1,4 @@
-package main.java.com.alexsid.lesson13;
+package com.alexsid.lesson13;
 
 public interface A {
 }

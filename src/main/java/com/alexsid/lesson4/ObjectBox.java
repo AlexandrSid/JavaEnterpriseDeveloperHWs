@@ -1,4 +1,4 @@
-package main.java.com.alexsid.lesson4;
+package com.alexsid.lesson4;
 
 import java.util.Collection;
 import java.util.HashSet;

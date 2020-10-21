@@ -1,4 +1,4 @@
-package main.java.com.alexsid.lesson10.tasks13;
+package com.alexsid.lesson10.tasks13;
 
 import java.lang.reflect.Proxy;
 import java.util.Random;

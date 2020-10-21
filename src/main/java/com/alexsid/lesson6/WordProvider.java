@@ -1,4 +1,4 @@
-package main.java.com.alexsid.lesson6;
+package com.alexsid.lesson6;
 
 @FunctionalInterface
 public interface WordProvider {

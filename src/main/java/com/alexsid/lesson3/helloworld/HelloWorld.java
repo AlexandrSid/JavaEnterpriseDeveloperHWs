@@ -1,4 +1,4 @@
-package main.java.com.alexsid.lesson3.helloworld;
+package com.alexsid.lesson3.helloworld;
 
 import java.util.Random;
 

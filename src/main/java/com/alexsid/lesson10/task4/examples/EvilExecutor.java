@@ -1,6 +1,6 @@
-package main.java.com.alexsid.lesson10.task4.examples;
+package com.alexsid.lesson10.task4.examples;
 
-import main.java.com.alexsid.lesson10.task4.Worker;
+import com.alexsid.lesson10.task4.Worker;
 
 import javax.tools.JavaCompiler;
 import javax.tools.ToolProvider;

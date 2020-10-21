@@ -1,4 +1,4 @@
-package main.java.com.alexsid.lesson3.personsorter;
+package com.alexsid.lesson3.personsorter;
 
 import java.util.Comparator;
 import java.util.Random;

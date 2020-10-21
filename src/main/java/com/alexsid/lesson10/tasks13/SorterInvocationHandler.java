@@ -1,4 +1,4 @@
-package main.java.com.alexsid.lesson10.tasks13;
+package com.alexsid.lesson10.tasks13;
 
 import java.io.FileOutputStream;
 import java.io.PrintStream;

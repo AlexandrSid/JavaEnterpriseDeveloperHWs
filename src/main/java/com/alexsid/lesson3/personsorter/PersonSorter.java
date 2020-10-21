@@ -1,4 +1,4 @@
-package main.java.com.alexsid.lesson3.personsorter;
+package com.alexsid.lesson3.personsorter;
 
 public interface PersonSorter {
     void sort(Person[] persons);

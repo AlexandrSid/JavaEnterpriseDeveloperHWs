@@ -1,6 +1,6 @@
-package main.java.com.alexsid.lesson1517.pets;
+package com.alexsid.lesson1517.pets;
 
-import main.java.com.alexsid.lesson1517.Person;
+import com.alexsid.lesson1517.Person;
 
 public class PetFactory {
 

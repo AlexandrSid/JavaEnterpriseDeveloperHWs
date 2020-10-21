@@ -1,4 +1,4 @@
-package main.java.com.alexsid.lesson10.task4;
+package com.alexsid.lesson10.task4;
 
 
 import javax.tools.JavaCompiler;

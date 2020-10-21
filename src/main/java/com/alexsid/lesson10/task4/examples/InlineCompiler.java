@@ -1,4 +1,4 @@
-package main.java.com.alexsid.lesson10.task4.examples;
+package com.alexsid.lesson10.task4.examples;
 
 
 import java.io.File;

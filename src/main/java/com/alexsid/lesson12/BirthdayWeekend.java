@@ -1,4 +1,4 @@
-package main.java.com.alexsid.lesson12;
+package com.alexsid.lesson12;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;

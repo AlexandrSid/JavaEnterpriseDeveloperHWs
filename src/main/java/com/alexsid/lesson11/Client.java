@@ -1,4 +1,4 @@
-package main.java.com.alexsid.lesson11;
+package com.alexsid.lesson11;
 
 import java.io.*;
 import java.net.Socket;

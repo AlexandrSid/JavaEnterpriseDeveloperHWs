@@ -1,4 +1,4 @@
-package main.java.com.alexsid.lesson1517;
+package com.alexsid.lesson1517;
 
 import java.util.Objects;
 

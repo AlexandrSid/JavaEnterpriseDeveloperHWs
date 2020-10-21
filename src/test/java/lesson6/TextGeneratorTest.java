@@ -1,6 +1,6 @@
-package test.java.lesson6;
+package lesson6;
 
-import main.java.com.alexsid.lesson6.TextGenerator;
+import com.alexsid.lesson6.TextGenerator;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

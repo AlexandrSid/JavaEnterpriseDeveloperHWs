@@ -1,4 +1,4 @@
-package main.java.com.alexsid.lesson7;
+package com.alexsid.lesson7;
 
 import java.math.BigInteger;
 import java.util.List;

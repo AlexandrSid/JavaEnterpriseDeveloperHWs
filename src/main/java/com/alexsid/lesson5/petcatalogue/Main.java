@@ -1,4 +1,4 @@
-package main.java.com.alexsid.lesson5.petcatalogue;
+package com.alexsid.lesson5.petcatalogue;
 
 public class Main {
 

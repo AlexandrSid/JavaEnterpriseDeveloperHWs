@@ -1,9 +1,9 @@
-package main.java.com.alexsid.lesson1517;
+package com.alexsid.lesson1517;
 //"lesson15-17" идея ругалась, какая договорённость на использование символов в именах пакетов?
 
-import main.java.com.alexsid.lesson1517.pets.DuplicatedPetException;
-import main.java.com.alexsid.lesson1517.pets.Pet;
-import main.java.com.alexsid.lesson1517.pets.PetComparator;
+import com.alexsid.lesson1517.pets.DuplicatedPetException;
+import com.alexsid.lesson1517.pets.Pet;
+import com.alexsid.lesson1517.pets.PetComparator;
 
 import java.util.*;
 
@@ -29,7 +29,7 @@ import java.util.*;
 //собссно сам каталог, поскольку должен быть в единственном экземпляре то он и будет синглтоном,
 //а поскольку вляется ключевым элементом приложения, то БЕЗ ленивой инициализации с проверками безопасности многопоточности
 public class PetCatalog {
-    private static PetCatalog instance = new PetCatalog();
+    private static final PetCatalog instance = new PetCatalog();
     private Map<String, List<Pet>> catalog = new HashMap<>();
 
     private PetCatalog() {

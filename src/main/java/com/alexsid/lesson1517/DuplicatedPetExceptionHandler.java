@@ -1,6 +1,6 @@
-package main.java.com.alexsid.lesson1517;
+package com.alexsid.lesson1517;
 
-import main.java.com.alexsid.lesson1517.pets.DuplicatedPetException;
+import com.alexsid.lesson1517.pets.DuplicatedPetException;
 
 public interface DuplicatedPetExceptionHandler {//strategy pattern
     void process(DuplicatedPetException e);
