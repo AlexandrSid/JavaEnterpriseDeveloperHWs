@@ -1,6 +1,6 @@
 package com.alexsid.lesson21;
 
-import com.alexsid.lesson1517.pets.Pet;
+import com.alexsid.lesson17.pets.Pet;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;

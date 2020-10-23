@@ -1,6 +1,6 @@
-package com.alexsid.lesson1517.pets;
+package com.alexsid.lesson17.pets;
 
-import com.alexsid.lesson1517.Person;
+import com.alexsid.lesson17.Person;
 
 public class CheaterPet extends AbstractPet {//полностью открытая реализация Pet с контруктором по-умолчанию (чтобы с рефлесией не заморачиваться)
     public CheaterPet(int id, PetType type, String name, Person owner, double weight) {

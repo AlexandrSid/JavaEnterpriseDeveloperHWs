@@ -5,7 +5,7 @@ package com.alexsid.lesson21;
  *
  *  не понял о каком приложении из выполненных ДЗ идёт речь,
  *  поэтому напишу JSON сериализатор для модели данных картотеки домашних животных их предыдущего блока
- *  на основе Jackson ObjectMapper*
- *  */
+ *  на основе Jackson ObjectMapper
+ */
 public class Main {
 }
