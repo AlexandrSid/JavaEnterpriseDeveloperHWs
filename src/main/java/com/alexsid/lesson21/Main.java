@@ -1,14 +1,8 @@
 package com.alexsid.lesson21;
 
 import com.alexsid.lesson17.Person;
-import com.alexsid.lesson17.PetCatalog;
-import com.alexsid.lesson17.PetCatalogFacade;
-import com.alexsid.lesson17.pets.CheaterPet;
 import com.alexsid.lesson17.pets.Pet;
 import com.alexsid.lesson17.pets.PetFactory;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Test;
 
 import java.io.IOException;
 
@@ -23,23 +17,38 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) throws IOException {
         PetFactory factory = PetFactory.getInstance();
-        PetCatalogFacade defaultCatalogFacade = new PetCatalogFacade(PetCatalog.getInstance());
+
         Person jean = new Person("Jean", 19, Person.Sex.FEMALE);
-        defaultCatalogFacade.addPetToCatalog(factory.createPet("Racccooon", jean, "Bandit", 6.6));
+        Person crism = new Person("Cris", 22, Person.Sex.MALE);
+        Person mike = new Person("Mike", 20, Person.Sex.MALE);
+        Person helen = new Person("Helen", 22, Person.Sex.FEMALE);
+        Person sam = new Person("Sam", 21, Person.Sex.MALE);
+        Person july = new Person("July", 18, Person.Sex.FEMALE);
+        Person crisf = new Person("Cris", 19, Person.Sex.FEMALE);
 
-        PetSerializer serializer = new PetSerializer();
+//        JsonFacade.addPetToCatalog(factory.createPet("cat", jean, "Flare", 3.4));
+//        JsonFacade.addPetToCatalog(factory.createPet("cat", jean, "Fluffy", 4.3));
+//        JsonFacade.addPetToCatalog(factory.createPet("cat", jean, "Foxy", 2.9));
+//        JsonFacade.addPetToCatalog(factory.createPet("cat", jean, "Fred", 4.9));
+//        JsonFacade.addPetToCatalog(factory.createPet("parrot", crism, "Twetty", 0.2));
+//        JsonFacade.addPetToCatalog(factory.createPet("dog", crism, "Lucky", 9.2));
+//        JsonFacade.addPetToCatalog(factory.createPet("Snake", mike, "Serpenty", 5.0));
+//        JsonFacade.addPetToCatalog(factory.createPet("dOg", helen, "Bolt", 17.7));
+//        JsonFacade.addPetToCatalog(factory.createPet("doG", sam, "Bolt", 14.7));
+//        JsonFacade.addPetToCatalog(factory.createPet("doG", sam, "Buffy", 13.2));
+//        JsonFacade.addPetToCatalog(factory.createPet("Racccooon", sam, "Bandit", 6.6));
+//        JsonFacade.addPetToCatalog(factory.createPet("Owl", july, "Khrias", 0.6));
+//        JsonFacade.addPetToCatalog(factory.createPet("Owl", july, "Khrum", 0.5));
+//        JsonFacade.addPetToCatalog(factory.createPet("Owl", july, "Willow", 0.4));
+//        JsonFacade.addPetToCatalog(factory.createPet("Owl", july, "Fred", 3.4));
+//        JsonFacade.addPetToCatalog(factory.createPet("Cat", july, "Murk", 4.4));
+//        JsonFacade.addPetToCatalog(factory.createPet("Lizard", crisf, "Pancake", 1.4));
+//
 
-        ObjectMapper mapper = new ObjectMapper();
-        Pet bandit = defaultCatalogFacade.findPetByName("Bandit");
+//        System.out.println(JsonFacade.getAllPets());
+        Pet pet = JsonFacade.findByName("Bolt");
+        System.out.println(pet);
 
-        serializer.serialize(bandit);
-        long targetId = bandit.getId();
-        Pet deserialized = serializer.deserialize(targetId);
-
-        System.out.println(bandit);
-        System.out.println(deserialized);
-        System.out.println(bandit.equals(deserialized));
-        System.out.println(deserialized.equals(bandit));
 
     }
 }
