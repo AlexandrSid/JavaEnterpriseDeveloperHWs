@@ -3,7 +3,7 @@ package com.alexsid.lesson17.pets;
 import com.alexsid.lesson17.Person;
 
 public interface Pet {
-    int getId();
+    long getId();
     Person getOwner();
     PetType getType();
     double getWeight();

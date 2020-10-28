@@ -51,7 +51,7 @@ public class PetCatalog {
         catalog.put(name, petsByName);
     }
 
-    public Pet removeByID(int id) {
+    public Pet removeByID(long id) {
         Pet target = getByID(id);
         for (List<Pet> namesakes : catalog.values()){
             namesakes.stream().filter(pet -> pet.getId() == id).findFirst().ifPresent(namesakes::remove);
@@ -63,7 +63,7 @@ public class PetCatalog {
         return catalog.get(name);
     }
 
-    public Pet getByID(int id) {
+    public Pet getByID(long id) {
         try {
             return catalog.values().stream().flatMap(Collection::stream).filter(p -> p.getId() == id).findFirst().get();
         } catch (NoSuchElementException e) {

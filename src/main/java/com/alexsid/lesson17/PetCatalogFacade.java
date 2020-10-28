@@ -48,7 +48,7 @@ public class PetCatalogFacade {
         return petByName.get(0);
     }
 
-    public void changePetNameByID(int id, String name) {
+    public void changePetNameByID(long id, String name) {
         Pet target = petCatalog.getByID(id);
         if (target == null)return;//не красиво
         target.setName(name);
@@ -56,7 +56,7 @@ public class PetCatalogFacade {
         petCatalog.addPet(target);
     }
 
-    public void changePetOwnerByID(int id, Person owner) {
+    public void changePetOwnerByID(long id, Person owner) {
         Pet target = petCatalog.getByID(id);
         if (target == null)return;
         target.setOwner(owner);
@@ -64,7 +64,7 @@ public class PetCatalogFacade {
         petCatalog.addPet(target);
     }
 
-    public void changePetWeightByID(int id, double newWeight) {
+    public void changePetWeightByID(long id, double newWeight) {
         Pet target = petCatalog.getByID(id);
         if (target == null)return;
         target.setWeight(newWeight);

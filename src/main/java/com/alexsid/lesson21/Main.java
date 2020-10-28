@@ -10,6 +10,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 
+import java.io.IOException;
+
 /**
  *  Изменить приложение для сериализации данных.
  *  Сохранять объект в JSON с помощью одной из библиотек сериализации.
@@ -19,20 +21,25 @@ import org.junit.Test;
  *  на основе Jackson ObjectMapper
  */
 public class Main {
-    public static void main(String[] args) throws JsonProcessingException {
+    public static void main(String[] args) throws IOException {
         PetFactory factory = PetFactory.getInstance();
         PetCatalogFacade defaultCatalogFacade = new PetCatalogFacade(PetCatalog.getInstance());
         Person jean = new Person("Jean", 19, Person.Sex.FEMALE);
-        defaultCatalogFacade.addPetToCatalog(factory.createPet("cat", jean, "Flare", 3.4));
+        defaultCatalogFacade.addPetToCatalog(factory.createPet("Racccooon", jean, "Bandit", 6.6));
+
+        PetSerializer serializer = new PetSerializer();
 
         ObjectMapper mapper = new ObjectMapper();
-        Pet flare = defaultCatalogFacade.findPetByName("Flare");
-        String json = mapper.writeValueAsString(flare);
-        System.out.println(json);
+        Pet bandit = defaultCatalogFacade.findPetByName("Bandit");
 
-        Pet petFromJson = mapper.readValue(json, CheaterPet.class);
-        System.out.println(petFromJson.equals(flare));
+        serializer.serialize(bandit);
+        long targetId = bandit.getId();
+        Pet deserialized = serializer.deserialize(targetId);
 
+        System.out.println(bandit);
+        System.out.println(deserialized);
+        System.out.println(bandit.equals(deserialized));
+        System.out.println(deserialized.equals(bandit));
 
     }
 }

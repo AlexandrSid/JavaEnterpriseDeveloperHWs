@@ -9,8 +9,8 @@ public class PetFactory {
     private static PetFactory factory = new PetFactory();
 
     public Pet createPet(String petType, Person owner, String name, Double weight) {
-        int newId =
-                UUID.randomUUID().clockSequence();
+        long newId =
+                UUID.randomUUID().getMostSignificantBits();
         return switch (petType.toLowerCase()) {
             case "cat" -> new Cat(newId, name, owner, weight);
             case "dog" -> new Dog(newId, name, owner, weight);
