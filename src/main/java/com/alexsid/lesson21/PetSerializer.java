@@ -13,15 +13,23 @@ public class PetSerializer {
     ObjectMapper objectMapper = new ObjectMapper();
     String targetDirectory = "src/main/resources/pet-catalog-json/";
 
-    public void serialize(Pet pet) throws IOException {
+    public void serialize(Pet pet) {
         String path = String.format("%s%d.json", targetDirectory, pet.getId());
-        objectMapper.writeValue(new File(path), pet);
+        try {
+            objectMapper.writeValue(new File(path), pet);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public Pet deserialize(long id) throws IOException {
+    public Pet deserialize(long id) {
         String path = String.format("%s%d.json", targetDirectory, id);
-        Pet result = objectMapper.readValue(new File(path), CheaterPet.class);
-        return result;
+        try {
+            return objectMapper.readValue(new File(path), CheaterPet.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return new CheaterPet();
     }
 
     public Pet deserialize(Path path) {

@@ -3,14 +3,13 @@ package com.alexsid.lesson21;
 import com.alexsid.lesson17.pets.CheaterPet;
 import com.alexsid.lesson17.pets.Pet;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -19,7 +18,7 @@ public class JsonPetCatalog {
     private PetSerializer serializer = new PetSerializer();
     private String catalogPath = "src/main/resources/pet-catalog-json";
 
-    public static final JsonPetCatalog getInstance() {
+    public static JsonPetCatalog getInstance() {
         return instance;
     }
 
@@ -27,21 +26,12 @@ public class JsonPetCatalog {
     }
 
     public long saveToCatalog(Pet pet) {
-        try {
-            serializer.serialize(pet);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        serializer.serialize(pet);
         return pet.getId();
     }
 
     public Pet getFromCatalog(long id) {
-        try {
-            return serializer.deserialize(id);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return new CheaterPet();//with id=0
+        return serializer.deserialize(id);
     }
 
     public boolean removeFromCatalog(long id) {
@@ -76,4 +66,13 @@ public class JsonPetCatalog {
         }
         return new CheaterPet();
     }
+
+    public void removeAll() {
+        try (Stream<Path> stream = Files.walk(Paths.get(catalogPath))) {
+            stream.map(Path::toFile).forEach(File::delete);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
