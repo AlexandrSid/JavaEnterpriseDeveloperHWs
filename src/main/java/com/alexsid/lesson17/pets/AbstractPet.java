@@ -1,18 +1,18 @@
-package com.alexsid.lesson1517.pets;
+package com.alexsid.lesson17.pets;
 
-import com.alexsid.lesson1517.Person;
+import com.alexsid.lesson17.Person;
 
 import java.util.Objects;
 
 public abstract class AbstractPet implements Pet {
-    protected int id;
+    protected long id;
     protected Person owner;
     protected PetType type;
     protected String name;
     protected double weight;
 
     @Override
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -36,7 +36,7 @@ public abstract class AbstractPet implements Pet {
         return name;
     }
 
-    public AbstractPet(int id, String name, Person owner, double weight) {
+    public AbstractPet(long id, String name, Person owner, double weight) {
         this.id = id;
         this.name = name;
         this.weight = weight;

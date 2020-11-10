@@ -1,13 +1,13 @@
-package com.alexsid.lesson1517.pets;
+package com.alexsid.lesson17.pets;
 
-import com.alexsid.lesson1517.Person;
+import com.alexsid.lesson17.Person;
 
 import java.util.Objects;
 
 public class Dog extends AbstractPet {
     private final PetType type = PetType.DOG;
 
-    protected Dog(int id, String name, Person owner, double weight) {
+    protected Dog(long id, String name, Person owner, double weight) {
         super(id, name, owner, weight);
     }
 
@@ -16,12 +16,6 @@ public class Dog extends AbstractPet {
         return type;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Dog)) return false;
-        return super.equals(o);
-    }
 
     @Override
     public int hashCode() {

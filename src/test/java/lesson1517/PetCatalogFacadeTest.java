@@ -1,12 +1,12 @@
 package lesson1517;
 
-import com.alexsid.lesson1517.DuplicatedPetExceptionHandler;
-import com.alexsid.lesson1517.Person;
-import com.alexsid.lesson1517.PetCatalog;
-import com.alexsid.lesson1517.PetCatalogFacade;
-import com.alexsid.lesson1517.pets.DuplicatedPetException;
-import com.alexsid.lesson1517.pets.Pet;
-import com.alexsid.lesson1517.pets.PetFactory;
+import com.alexsid.lesson17.DuplicatedPetExceptionHandler;
+import com.alexsid.lesson17.Person;
+import com.alexsid.lesson17.PetCatalog;
+import com.alexsid.lesson17.PetCatalogFacade;
+import com.alexsid.lesson17.pets.DuplicatedPetException;
+import com.alexsid.lesson17.pets.Pet;
+import com.alexsid.lesson17.pets.PetFactory;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

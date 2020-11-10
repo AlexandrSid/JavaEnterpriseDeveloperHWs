@@ -6,6 +6,7 @@ public class SomeClass implements Worker {
     }
     @Override
     public void doWork() {
+System.out.println("is it works now?");
 System.out.println("QQY");
 System.out.println("QQT");
 System.out.println("QQR");

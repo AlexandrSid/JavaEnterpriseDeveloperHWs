@@ -1,11 +1,11 @@
-package com.alexsid.lesson1517;
+package com.alexsid.lesson17;
 
 import java.util.Objects;
 
 public class Person {
-    private final String name;
+    private  String name;
     private int age;
-    private final Sex sex;
+    private  Sex sex;
 
     public enum Sex {
         MALE,
@@ -52,5 +52,20 @@ public class Person {
                 ", age=" + age +
                 ", sex=" + sex +
                 '}';
+    }
+
+    public Person() {
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSex(Sex sex) {
+        this.sex = sex;
     }
 }
