@@ -1,13 +1,13 @@
-package com.alexsid.lesson1517.pets;
+package com.alexsid.lesson15.pets;
 
-import com.alexsid.lesson1517.Person;
+import com.alexsid.lesson15.Person;
 
 import java.util.Objects;
 
-public class Parrot extends AbstractPet {
-    private final PetType type = PetType.PARROT;
+public class Exotic extends AbstractPet {
+    private final PetType type = PetType.EXOTIC;
 
-    protected Parrot(int id, String name, Person owner, double weight) {
+    protected Exotic(int id, String name, Person owner, double weight) {
         super(id, name, owner, weight);
     }
 
@@ -19,7 +19,7 @@ public class Parrot extends AbstractPet {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Parrot)) return false;
+        if (!(o instanceof Exotic)) return false;
         return super.equals(o);
     }
 

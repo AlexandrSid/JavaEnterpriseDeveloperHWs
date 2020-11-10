@@ -1,8 +1,8 @@
-package com.alexsid.lesson1517;
+package com.alexsid.lesson15;
 
-import com.alexsid.lesson1517.pets.DuplicatedPetException;
-import com.alexsid.lesson1517.pets.Pet;
-import com.alexsid.lesson1517.pets.PetComparator;
+import com.alexsid.lesson15.pets.DuplicatedPetException;
+import com.alexsid.lesson15.pets.Pet;
+import com.alexsid.lesson15.pets.PetComparator;
 
 import java.util.List;
 

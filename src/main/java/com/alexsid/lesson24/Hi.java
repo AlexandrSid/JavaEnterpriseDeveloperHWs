@@ -77,7 +77,6 @@ class Hi extends JFrame implements MouseListener {
     // Methods I am forced to implement because of the MouseListener
 
     public void mouseClicked(MouseEvent e) {
-
         helloLabel.setText("Hello " + userInputTextField.getText());
 
     }

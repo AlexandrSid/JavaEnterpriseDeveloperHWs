@@ -1,6 +1,6 @@
-package com.alexsid.lesson1517.pets;
+package com.alexsid.lesson15.pets;
 
-import com.alexsid.lesson1517.Person;
+import com.alexsid.lesson15.Person;
 
 public class PetFactory {
 

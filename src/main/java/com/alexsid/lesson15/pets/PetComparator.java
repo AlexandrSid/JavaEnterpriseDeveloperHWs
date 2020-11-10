@@ -1,4 +1,4 @@
-package com.alexsid.lesson1517.pets;
+package com.alexsid.lesson15.pets;
 
 import java.util.Comparator;
 

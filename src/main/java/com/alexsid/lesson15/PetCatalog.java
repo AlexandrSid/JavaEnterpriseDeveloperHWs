@@ -1,9 +1,9 @@
-package com.alexsid.lesson1517;
+package com.alexsid.lesson15;
 //"lesson15-17" идея ругалась, какая договорённость на использование символов в именах пакетов?
 
-import com.alexsid.lesson1517.pets.DuplicatedPetException;
-import com.alexsid.lesson1517.pets.Pet;
-import com.alexsid.lesson1517.pets.PetComparator;
+import com.alexsid.lesson15.pets.DuplicatedPetException;
+import com.alexsid.lesson15.pets.Pet;
+import com.alexsid.lesson15.pets.PetComparator;
 
 import java.util.*;
 
