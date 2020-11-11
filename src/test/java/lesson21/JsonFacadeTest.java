@@ -1,8 +1,9 @@
-package com.alexsid.lesson21;
+package lesson21;
 
 import com.alexsid.lesson17.Person;
 import com.alexsid.lesson17.pets.Pet;
 import com.alexsid.lesson17.pets.PetFactory;
+import com.alexsid.lesson21.JsonFacade;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
