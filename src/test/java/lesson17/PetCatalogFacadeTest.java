@@ -1,4 +1,4 @@
-package lesson1517;
+package lesson17;
 
 import com.alexsid.lesson17.DuplicatedPetExceptionHandler;
 import com.alexsid.lesson17.Person;
